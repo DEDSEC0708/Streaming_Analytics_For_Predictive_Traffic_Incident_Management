@@ -38,8 +38,13 @@ export const HistoryTimeline = ({ items, loading }) => {
 
             <div className="max-h-[560px] overflow-y-auto">
                 {loading && (
-                    <div className="p-5 font-mono text-xs uppercase tracking-[0.2em] text-white/40 ascii-loader">
-                        [ LOADING_LOG ]
+                    <div className="p-5 space-y-3">
+                        {[0, 1, 2].map((i) => (
+                            <div key={i} className="grid grid-cols-12 gap-3">
+                                <div className="col-span-4 skeleton h-10 border border-white/5" />
+                                <div className="col-span-8 skeleton h-10 border border-white/5" />
+                            </div>
+                        ))}
                     </div>
                 )}
                 {!loading && (!items || items.length === 0) && (
@@ -55,7 +60,8 @@ export const HistoryTimeline = ({ items, loading }) => {
                         <li
                             key={it.id}
                             data-testid={`history-item-${idx}`}
-                            className={`relative grid grid-cols-12 gap-3 px-5 py-4 border-white/10 ${idx !== items.length - 1 ? "border-b" : ""}`}
+                            className={`relative grid grid-cols-12 gap-3 px-5 py-4 border-white/10 reveal ${idx !== items.length - 1 ? "border-b" : ""}`}
+                            style={{ animationDelay: `${Math.min(idx, 6) * 40}ms` }}
                         >
                             <div className="col-span-12 md:col-span-4 flex items-start gap-3">
                                 <span

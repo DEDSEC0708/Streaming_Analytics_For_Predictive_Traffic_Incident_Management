@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import { http } from "../lib/api";
 import { toast } from "sonner";
+import { withRipple } from "../lib/ripple";
 import { Input } from "./ui/input";
 import { Label } from "./ui/label";
 import { Button } from "./ui/button";
@@ -137,9 +138,9 @@ export const WeatherForm = ({
                         <Button
                             type="button"
                             data-testid="fetch-live-btn"
-                            onClick={fetchLive}
+                            onClick={withRipple(fetchLive)}
                             disabled={fetchingLive}
-                            className="group rounded-none bg-white text-black hover:bg-white/90 h-10 px-4 font-mono text-xs uppercase tracking-[0.2em] border-l-0 transition-all duration-150 active:scale-[0.97] active:bg-white/70 focus-visible:ring-2 focus-visible:ring-white/60 focus-visible:ring-offset-0 disabled:opacity-60 disabled:cursor-not-allowed cursor-pointer"
+                            className="group relative overflow-hidden rounded-none bg-white text-black hover:bg-white/90 h-10 px-4 font-mono text-xs uppercase tracking-[0.2em] border-l-0 transition-all duration-150 active:scale-[0.97] active:bg-white/70 focus-visible:ring-2 focus-visible:ring-white/60 focus-visible:ring-offset-0 disabled:opacity-60 disabled:cursor-not-allowed cursor-pointer"
                         >
                             {fetchingLive ? (
                                 <span className="ascii-loader">FETCHING</span>
@@ -232,6 +233,7 @@ export const WeatherForm = ({
                 <Button
                     type="submit"
                     data-testid="predict-btn"
+                    onClick={withRipple(undefined)}
                     disabled={loading}
                     className="group relative overflow-hidden rounded-none bg-white text-black hover:bg-white/90 h-12 px-6 font-mono text-xs uppercase tracking-[0.25em] transition-all duration-150 active:scale-[0.98] active:bg-white/70 focus-visible:ring-2 focus-visible:ring-white/60 focus-visible:ring-offset-0 disabled:opacity-60 disabled:cursor-not-allowed cursor-pointer"
                 >

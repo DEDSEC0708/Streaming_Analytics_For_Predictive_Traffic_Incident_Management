@@ -11,6 +11,7 @@ import { Label } from "./ui/label";
 import { Button } from "./ui/button";
 import { http } from "../lib/api";
 import { toast } from "sonner";
+import { withRipple } from "../lib/ripple";
 import { Key, Link as LinkIcon } from "@phosphor-icons/react";
 
 export const SettingsSheet = ({ open, onOpenChange, settings, onSaved }) => {
@@ -91,10 +92,10 @@ export const SettingsSheet = ({ open, onOpenChange, settings, onSaved }) => {
                         />
                         <Button
                             type="button"
-                            onClick={save}
+                            onClick={withRipple(save)}
                             disabled={saving}
                             data-testid="save-key-btn"
-                            className="group mt-3 rounded-none bg-white text-black hover:bg-white/90 h-11 px-5 font-mono text-xs uppercase tracking-[0.25em] transition-all duration-150 active:scale-[0.97] active:bg-white/70 focus-visible:ring-2 focus-visible:ring-white/60 focus-visible:ring-offset-0 disabled:opacity-60 disabled:cursor-not-allowed cursor-pointer"
+                            className="group relative overflow-hidden mt-3 rounded-none bg-white text-black hover:bg-white/90 h-11 px-5 font-mono text-xs uppercase tracking-[0.25em] transition-all duration-150 active:scale-[0.97] active:bg-white/70 focus-visible:ring-2 focus-visible:ring-white/60 focus-visible:ring-offset-0 disabled:opacity-60 disabled:cursor-not-allowed cursor-pointer"
                         >
                             {saving ? (
                                 <span className="ascii-loader">SAVING</span>

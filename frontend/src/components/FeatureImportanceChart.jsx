@@ -104,7 +104,9 @@ export const FeatureImportanceChart = ({ importance, accuracy, nSamples }) => {
                         <Bar
                             dataKey="pct"
                             fill="#FFFFFF"
-                            isAnimationActive={false}
+                            isAnimationActive
+                            animationDuration={300}
+                            animationEasing="ease-out"
                         >
                             <LabelList
                                 dataKey="pct"

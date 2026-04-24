@@ -95,10 +95,17 @@ export default function Dashboard() {
     };
 
     return (
-        <div className="min-h-screen flex" data-testid="dashboard">
+        <div className="min-h-screen flex relative" data-testid="dashboard">
+            {/* Ambient background micro-motion — very low opacity, does not affect readability */}
+            <div
+                aria-hidden
+                className="pointer-events-none fixed inset-0 opacity-[0.025] bg-grid"
+            />
+
             <Toaster
                 position="top-right"
                 theme="dark"
+                duration={3200}
                 toastOptions={{
                     style: {
                         background: "#0F0F0F",
@@ -112,7 +119,7 @@ export default function Dashboard() {
             />
 
             {/* Sidebar */}
-            <aside className="hidden md:flex flex-col justify-between items-center py-6 border-r border-white/10 w-16 lg:w-20 bg-[#0F0F0F]">
+            <aside className="relative hidden md:flex flex-col justify-between items-center py-6 border-r border-white/10 w-16 lg:w-20 bg-[#0F0F0F] reveal reveal-1">
                 <div className="flex flex-col items-center gap-6">
                     <div className="w-8 h-8 border border-white/30 flex items-center justify-center">
                         <span className="font-mono text-xs font-bold">RX</span>
@@ -167,9 +174,9 @@ export default function Dashboard() {
             </aside>
 
             {/* Main */}
-            <main className="flex-1 min-w-0">
+            <main className="flex-1 min-w-0 relative">
                 {/* Top bar */}
-                <header className="border-b border-white/10 bg-[#0F0F0F] px-5 lg:px-8 py-4 flex items-center justify-between flex-wrap gap-3">
+                <header className="border-b border-white/10 bg-[#0F0F0F] px-5 lg:px-8 py-4 flex items-center justify-between flex-wrap gap-3 reveal reveal-2">
                     <div>
                         <div className="font-mono text-[10px] uppercase tracking-[0.3em] text-white/40">
                             RISK.OPS // v1.0 · xgboost.multiclass
@@ -229,7 +236,7 @@ export default function Dashboard() {
                 </header>
 
                 {/* Risk summary strip */}
-                <section className="grid grid-cols-3 border-b border-white/10 bg-[#0F0F0F]">
+                <section className="grid grid-cols-3 border-b border-white/10 bg-[#0F0F0F] reveal reveal-3">
                     {[
                         { k: "Low", color: "#00E676" },
                         { k: "Medium", color: "#FFC400" },
@@ -257,7 +264,7 @@ export default function Dashboard() {
 
                 {/* Control room grid */}
                 <div className="grid grid-cols-1 lg:grid-cols-12 gap-4 p-5 lg:p-8">
-                    <div className="lg:col-span-6">
+                    <div className="lg:col-span-6 reveal reveal-4">
                         <WeatherForm
                             conditions={conditions}
                             onPredict={onPredict}
@@ -265,17 +272,17 @@ export default function Dashboard() {
                             settingsConfigured={settings.configured}
                         />
                     </div>
-                    <div className="lg:col-span-6">
-                        <RiskResult prediction={prediction} />
+                    <div className="lg:col-span-6 reveal reveal-4">
+                        <RiskResult prediction={prediction} loading={predictLoading} />
                     </div>
-                    <div className="lg:col-span-6">
+                    <div className="lg:col-span-6 reveal reveal-5">
                         <FeatureImportanceChart
                             importance={modelInfo?.feature_importance}
                             accuracy={modelInfo?.accuracy}
                             nSamples={modelInfo?.n_samples}
                         />
                     </div>
-                    <div className="lg:col-span-6">
+                    <div className="lg:col-span-6 reveal reveal-5">
                         <HistoryTimeline
                             items={history}
                             loading={historyLoading}

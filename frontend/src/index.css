@@ -116,10 +116,15 @@ body {
     }
 }
 
-@keyframes fade-in-up {
+/* ------------------------------------------------------------------
+   Motion System — sharp, control-room feel.
+   All durations 150–300ms, ease-out, no overshoot.
+   ------------------------------------------------------------------ */
+
+@keyframes reveal-up {
     from {
         opacity: 0;
-        transform: translateY(6px);
+        transform: translateY(8px);
     }
     to {
         opacity: 1;
@@ -127,8 +132,165 @@ body {
     }
 }
 
-.animate-in {
-    animation: fade-in-up 220ms ease-out both;
+@keyframes reveal-card {
+    from {
+        opacity: 0;
+        transform: scale(0.98);
+    }
+    to {
+        opacity: 1;
+        transform: scale(1);
+    }
+}
+
+@keyframes risk-pop {
+    0% {
+        opacity: 0;
+        letter-spacing: 0.06em;
+    }
+    100% {
+        opacity: 1;
+        letter-spacing: -0.04em;
+    }
+}
+
+@keyframes grow-width {
+    from {
+        width: 0%;
+    }
+    to {
+        width: var(--to-width, 100%);
+    }
+}
+
+@keyframes shimmer {
+    0% {
+        background-position: -220% 0;
+    }
+    100% {
+        background-position: 220% 0;
+    }
+}
+
+@keyframes grid-drift {
+    from {
+        background-position:
+            0 0,
+            0 0;
+    }
+    to {
+        background-position:
+            40px 40px,
+            40px 40px;
+    }
+}
+
+@keyframes ripple {
+    from {
+        transform: scale(0);
+        opacity: 0.35;
+    }
+    to {
+        transform: scale(4);
+        opacity: 0;
+    }
+}
+
+.reveal {
+    animation: reveal-up 220ms ease-out both;
+}
+.reveal-1 {
+    animation-delay: 40ms;
+}
+.reveal-2 {
+    animation-delay: 90ms;
+}
+.reveal-3 {
+    animation-delay: 150ms;
+}
+.reveal-4 {
+    animation-delay: 210ms;
+}
+.reveal-5 {
+    animation-delay: 270ms;
+}
+.reveal-6 {
+    animation-delay: 330ms;
+}
+
+.reveal-card {
+    animation: reveal-card 180ms ease-out both;
+}
+
+.risk-pop {
+    animation: risk-pop 220ms ease-out both;
+}
+
+.bar-grow {
+    animation: grow-width 260ms ease-out both;
+}
+
+.bg-grid {
+    background-image:
+        linear-gradient(rgba(255, 255, 255, 0.5) 1px, transparent 1px),
+        linear-gradient(
+            90deg,
+            rgba(255, 255, 255, 0.5) 1px,
+            transparent 1px
+        );
+    background-size:
+        40px 40px,
+        40px 40px;
+    animation: grid-drift 10s linear infinite;
+}
+
+.ripple-dot {
+    position: absolute;
+    border-radius: 9999px;
+    pointer-events: none;
+    background: radial-gradient(
+        closest-side,
+        rgba(0, 0, 0, 0.18),
+        transparent 70%
+    );
+    animation: ripple 520ms ease-out forwards;
+}
+.ripple-dot--light {
+    background: radial-gradient(
+        closest-side,
+        rgba(255, 255, 255, 0.22),
+        transparent 70%
+    );
+}
+
+.skeleton {
+    position: relative;
+    overflow: hidden;
+    background: #0a0a0a;
+}
+.skeleton::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(
+        90deg,
+        transparent 0%,
+        rgba(255, 255, 255, 0.04) 50%,
+        transparent 100%
+    );
+    background-size: 220% 100%;
+    animation: shimmer 1.2s linear infinite;
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .reveal,
+    .reveal-card,
+    .risk-pop,
+    .bar-grow,
+    .bg-grid,
+    .skeleton::after {
+        animation: none !important;
+    }
 }
 
 /* Recharts overrides */
