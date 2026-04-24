@@ -1,0 +1,105 @@
+{
+  "theme": "dark",
+  "archetype": "Archetype 4 (Swiss & High-Contrast) + Retro-Futurism/Terminal Look",
+  "mood": "Confident, authoritative, rigid, tactical, objective, data-heavy",
+  "colors": {
+    "background": "#050505",
+    "surface": "#0F0F0F",
+    "surface_hover": "#1A1A1A",
+    "border": "rgba(255, 255, 255, 0.1)",
+    "text": {
+      "primary": "#FFFFFF",
+      "secondary": "rgba(255, 255, 255, 0.6)",
+      "muted": "rgba(255, 255, 255, 0.4)"
+    },
+    "risk": {
+      "low": "#00E676",
+      "low_bg": "rgba(0, 230, 118, 0.1)",
+      "medium": "#FFC400",
+      "medium_bg": "rgba(255, 196, 0, 0.1)",
+      "high": "#FF3B30",
+      "high_bg": "rgba(255, 59, 48, 0.1)"
+    },
+    "brand": "#FFFFFF"
+  },
+  "typography": {
+    "headings": {
+      "font_family": "'Cabinet Grotesk', 'IBM Plex Sans', sans-serif",
+      "weight": "font-bold",
+      "tracking": "tracking-tight",
+      "sizes": {
+        "h1": "text-4xl",
+        "h2": "text-2xl",
+        "h3": "text-lg",
+        "label": "text-xs uppercase tracking-[0.2em]"
+      }
+    },
+    "body": {
+      "font_family": "'IBM Plex Sans', sans-serif",
+      "size": "text-sm md:text-base",
+      "leading": "leading-relaxed"
+    },
+    "data_metrics": {
+      "font_family": "'JetBrains Mono', 'Roboto Mono', monospace",
+      "weight": "font-medium",
+      "sizes": {
+        "large": "text-5xl tracking-tighter",
+        "medium": "text-2xl tracking-tight",
+        "small": "text-sm"
+      }
+    }
+  },
+  "spacing_and_layout": {
+    "grid_strategy": "MODE B: THE CONTROL ROOM GRID",
+    "spacing_scale": "Dense. Use p-4 to p-6 for widget padding. gap-4 or gap-0 (with border-collapse) for grids.",
+    "border_radius": "rounded-none (0px) to emphasize rigidity, precision, and the ML terminal aesthetic.",
+    "alignment": "Strict left-alignment for all data. Numbers tabular-nums aligned right in tables.",
+    "structure": {
+      "sidebar": "w-16 or w-20, fixed, border-r border-white/10 flex flex-col justify-between items-center py-6",
+      "main_content": "grid grid-cols-1 md:grid-cols-3 lg:grid-cols-4 gap-4 p-4 lg:p-8"
+    }
+  },
+  "surface_strategies": {
+    "cards": "Grid Borders (The 'Technical' Look). Use flat background #0F0F0F, 1px subtle border border-white/10, NO shadows. Hover: slight border color brighten border-white/20.",
+    "glassmorphism": "BANNED. Use flat solid colors to prevent visual refraction of critical safety data.",
+    "gradients": "BANNED. Use pure colors and 10% opacity fills for risk levels.",
+    "borders": "Expose the skeleton. Use borders heavily to separate data points. Implement 1px borders between all major sections to feel like a heads-up display."
+  },
+  "components": {
+    "buttons": "Flat, 1px border. Primary CTA: bg-white text-black hover:bg-white/90. Secondary: bg-transparent border-white/10 text-white hover:border-white/30. Square corners (rounded-none).",
+    "inputs": "Shadcn inputs customized to bg-[#050505] border-white/20 rounded-none. Focus ring: 1px solid white (no blur).",
+    "charts": "Recharts. Grid lines: solid white/5. Tooltip: pure black bg, 1px white/20 border rounded-none. Chart lines: straight or step (no curved splines) to feel more technical. Use risk colors for bars/lines.",
+    "badges": "Square (rounded-none). text-xs uppercase mono. Example: bg-red-500/10 text-red-500 border border-red-500/20.",
+    "dialogs_sheets": "Settings page (API Key) should be a Shadcn Sheet (slide out from right) with pure #0F0F0F background, hard borders."
+  },
+  "motion_and_interaction": {
+    "hover_states": "Crisp. Elements shouldn't float; their borders should brighten. hover:border-white/30. Text links: hover:text-white transition-colors.",
+    "transitions": "Fast and snappy. duration-150 ease-in-out.",
+    "loading": "Use mono text '[ LOADING_DATA... ]' or an ASCII-style indeterminate loader. No standard spinning circles."
+  },
+  "icons": {
+    "library": "Phosphor Icons (@phosphor-icons/react)",
+    "style": "Regular or Bold weight, technical feel. Use sharp geometry."
+  },
+  "media": {
+    "image_urls": [
+      {
+        "url": "https://images.pexels.com/photos/6288284/pexels-photo-6288284.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940",
+        "description": "Abstract top view map with artistic geometric cutouts",
+        "category": "background_texture",
+        "usage": "Optional. Use as a highly muted (opacity 5-10%), grayscale background texture behind the Risk Probability Chart or main prediction hero widget to reinforce the 'traffic/spatial' context without being distracting."
+      }
+    ]
+  },
+  "instructions_to_main_agent": [
+    "Install dependencies: yarn add @phosphor-icons/react recharts",
+    "Set up Tailwind CSS overrides (in index.css) to use the exact colors defined: background #050505, foreground #FFFFFF, border rgba(255, 255, 255, 0.1), card #0F0F0F.",
+    "Inject Google Fonts in index.html for 'IBM Plex Sans' and 'JetBrains Mono' (or configure them in Tailwind). Replace 'Inter'.",
+    "Build the dashboard using a dense 'Control Room' grid layout. Avoid excessive padding. Keep things tight and tabular.",
+    "Weather Input Form: Dense control panel format. Use strict Shadcn inputs with rounded-none.",
+    "Risk Level Prediction Display: A massive, dominant widget. Use the 'data_metrics.large' (text-5xl+) mono font style. Explicitly color the widget's background subtly based on the predicted risk level (e.g., bg-[#00E676]/10 and border-[#00E676] for Low).",
+    "Prediction History Timeline: A strict vertical line (border-l) with mono-spaced timestamps and risk-colored square nodes.",
+    "Model Insights/Feature Importance: Use Recharts horizontal bar chart. Sort by importance. Use pure flat colors.",
+    "Enforce strict 'data-testid' attributes on ALL inputs, buttons, and key informational elements."
+  ]
+}
