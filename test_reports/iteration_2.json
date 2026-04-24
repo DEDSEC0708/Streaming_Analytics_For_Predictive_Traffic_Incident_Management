@@ -1,0 +1,28 @@
+{
+  "summary": "Iteration-2 regression + animation testing. Backend pytest suite (11/11) still green — /predict, /history, /model-info, /settings short-key 422, /live-data 400/401 all behave unchanged. Frontend end-to-end: dashboard loads with 0 console errors, Traffic Incident Risk Console header visible, bg-grid ambient layer present (position=fixed, pointer-events=none, opacity=0.025), ripple-dot span is appended on click for predict-btn, fetch-live-btn, and save-key-btn (verified via MutationObserver, 1 append each), auto-removed after 520 ms (ripple-dot absent after 800 ms). Prediction flow renders data-testid='risk-result' with risk-level-value, risk-confidence, confidence-bar, prob-low/medium/high, and risk-probabilities-chart; history-item-0 updates with the new entry. Feature importance chart animates 6 bars with non-zero widths (weather:710px, hour:188px, temp:130px, …). SettingsSheet: short (<8) key blocked client-side with toast + no POST; 16-char key POSTs and switches settings-status to ACTIVE · DUMM****1234. No CSS custom-property warnings, no React style warnings, no Recharts width(-1)/height(-1) warnings surfaced this iteration.",
+  "backend_issues": { "critical": [], "minor": [] },
+  "frontend_issues": {
+    "ui_bugs": [],
+    "integration_issues": [],
+    "design_issues": []
+  },
+  "test_report_links": [
+    "/app/backend/tests/test_traffic_risk_api.py",
+    "/app/test_reports/pytest/pytest_results.xml"
+  ],
+  "action_items": [],
+  "critical_code_review_comments": [
+    "RiskResult.jsx line 236: the animationDelay inline style (`animationDelay: '${40 + i * 40}ms'`) together with the '--to-width' CSS variable works today but relies on React accepting a custom-property in the style object. This is supported in React >=16 but static lint rules sometimes flag it. Safe; no action required.",
+    "WeatherForm.jsx line 236: predict-btn uses `onClick={withRipple(undefined)}` which is fine because spawnRipple short-circuits when handler is not a function; keep as-is but a small eslint/no-unused-undefined rule may complain. Consider `withRipple()` (no arg) for clarity.",
+    "RiskResult.jsx keeps Recharts ResponsiveContainer mounted even with zero-height predecessors for one tick when the card first appears after a predict. Width(-1)/height(-1) warning seen in iteration-1 was not reproduced here; if it resurfaces, gate the chart on `data.length > 0` or set an explicit height on the wrapper.",
+    "ripple.js: host.appendChild is synchronous, and removal is via setTimeout(520 ms). On fast React re-renders (e.g., button label text changing from 'Run Prediction' to 'PREDICTING'), React reconciles its own children and leaves the ripple span intact — confirmed via MutationObserver."
+  ],
+  "updated_files": [],
+  "success_rate": { "backend": "100%", "frontend": "100%" },
+  "test_credentials": "N/A — public app, no auth.",
+  "seed_data_creation": "Two additional TEST_ predictions inserted via /api/predict during UI run (LOW and MEDIUM). Settings doc overwritten with DUMMYKEYABCD1234; run `mongosh \"$DB_NAME\" --eval 'db.settings.deleteMany({})'` to reset to NOT_CONFIGURED before next iteration if needed.",
+  "retest_needed": false,
+  "main_agent_can_self_test": true,
+  "context_for_next_testing_agent": "Iteration 2 (animation layer) is 100% pass — regression + new motion behaviors verified. Key techniques: for short-lived DOM artifacts like `.ripple-dot` (520 ms lifetime), polling with is_visible often misses the window because of React re-render timing; use a MutationObserver attached to the button BEFORE the click to reliably record appendChild events (see inline JS in this iteration's second browser_automation call). data-testids available: dashboard, hdr-accuracy, hdr-api-status, stat-low/medium/high, weather-input-form, input-temperature/humidity/visibility/wind_speed/hour/weather_condition, city-input, fetch-live-btn, predict-btn, risk-result, risk-result-empty, risk-result-loading, risk-level-value, risk-confidence, confidence-bar, prob-low/medium/high, risk-probabilities-chart, history-item-0..N, feature-importance-panel, open-settings-btn, open-settings-btn-top, settings-sheet, settings-status, openweather-key-input, save-key-btn.",
+  "rca of the issue": "No bugs. Two non-issues worth noting: (a) Polling for `.ripple-dot` with is_visible immediately after page.click can miss the 520 ms window; solution is MutationObserver as used here. (b) risk-result-loading skeleton is only visible for the server round-trip (~50-150 ms) which is below typical 20 ms poll granularity; the predict-btn `disabled` attribute is the more reliable indicator of in-flight state and it was confirmed to toggle correctly in iteration 1 test context. Iteration 2 confirmed the skeleton DOM is correctly wired (data-testid='risk-result-loading' exists in RiskResult.jsx L35) even if the render window is brief locally."
+}
