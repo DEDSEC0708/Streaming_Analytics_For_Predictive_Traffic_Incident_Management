@@ -94,12 +94,20 @@ export const SettingsSheet = ({ open, onOpenChange, settings, onSaved }) => {
                             onClick={save}
                             disabled={saving}
                             data-testid="save-key-btn"
-                            className="mt-3 rounded-none bg-white text-black hover:bg-white/90 h-11 px-5 font-mono text-xs uppercase tracking-[0.25em]"
+                            className="group mt-3 rounded-none bg-white text-black hover:bg-white/90 h-11 px-5 font-mono text-xs uppercase tracking-[0.25em] transition-all duration-150 active:scale-[0.97] active:bg-white/70 focus-visible:ring-2 focus-visible:ring-white/60 focus-visible:ring-offset-0 disabled:opacity-60 disabled:cursor-not-allowed cursor-pointer"
                         >
                             {saving ? (
                                 <span className="ascii-loader">SAVING</span>
                             ) : (
-                                "Save Key"
+                                <>
+                                    <span>Save Key</span>
+                                    <span
+                                        aria-hidden
+                                        className="ml-2 inline-block transition-transform duration-150 group-hover:translate-x-0.5"
+                                    >
+                                        →
+                                    </span>
+                                </>
                             )}
                         </Button>
                     </div>

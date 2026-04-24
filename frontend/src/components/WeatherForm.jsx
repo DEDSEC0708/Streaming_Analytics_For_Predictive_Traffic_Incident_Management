@@ -139,13 +139,16 @@ export const WeatherForm = ({
                             data-testid="fetch-live-btn"
                             onClick={fetchLive}
                             disabled={fetchingLive}
-                            className="rounded-none bg-white text-black hover:bg-white/90 h-10 px-4 font-mono text-xs uppercase tracking-[0.2em] border-l-0"
+                            className="group rounded-none bg-white text-black hover:bg-white/90 h-10 px-4 font-mono text-xs uppercase tracking-[0.2em] border-l-0 transition-all duration-150 active:scale-[0.97] active:bg-white/70 focus-visible:ring-2 focus-visible:ring-white/60 focus-visible:ring-offset-0 disabled:opacity-60 disabled:cursor-not-allowed cursor-pointer"
                         >
                             {fetchingLive ? (
                                 <span className="ascii-loader">FETCHING</span>
                             ) : (
                                 <>
-                                    <DownloadSimple size={14} className="mr-2" />
+                                    <DownloadSimple
+                                        size={14}
+                                        className="mr-2 transition-transform duration-150 group-hover:translate-y-0.5"
+                                    />
                                     Pull
                                 </>
                             )}
@@ -230,14 +233,24 @@ export const WeatherForm = ({
                     type="submit"
                     data-testid="predict-btn"
                     disabled={loading}
-                    className="rounded-none bg-white text-black hover:bg-white/90 h-12 px-6 font-mono text-xs uppercase tracking-[0.25em]"
+                    className="group relative overflow-hidden rounded-none bg-white text-black hover:bg-white/90 h-12 px-6 font-mono text-xs uppercase tracking-[0.25em] transition-all duration-150 active:scale-[0.98] active:bg-white/70 focus-visible:ring-2 focus-visible:ring-white/60 focus-visible:ring-offset-0 disabled:opacity-60 disabled:cursor-not-allowed cursor-pointer"
                 >
-                    <Lightning size={14} weight="bold" className="mr-2" />
-                    {loading ? (
-                        <span className="ascii-loader">PREDICTING</span>
-                    ) : (
-                        "Run Prediction"
-                    )}
+                    <span
+                        aria-hidden
+                        className="absolute inset-y-0 left-0 w-0 bg-black/5 transition-[width] duration-300 ease-out group-hover:w-full"
+                    />
+                    <Lightning
+                        size={14}
+                        weight="bold"
+                        className="mr-2 relative z-10 transition-transform duration-150 group-hover:translate-x-0.5"
+                    />
+                    <span className="relative z-10">
+                        {loading ? (
+                            <span className="ascii-loader">PREDICTING</span>
+                        ) : (
+                            "Run Prediction"
+                        )}
+                    </span>
                 </Button>
                 <span className="font-mono text-[10px] uppercase tracking-[0.25em] text-white/40">
                     MODEL :: XGBOOST_MULTICLASS

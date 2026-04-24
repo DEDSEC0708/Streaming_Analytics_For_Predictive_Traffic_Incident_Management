@@ -119,38 +119,50 @@ export default function Dashboard() {
                     </div>
                     <nav className="flex flex-col items-center gap-4 mt-4">
                         <button
+                            type="button"
                             title="Dashboard"
-                            className="p-2 border border-white/20 hover:border-white/60 transition-colors"
+                            data-testid="nav-dashboard-btn"
+                            className="p-2 border border-white/20 text-white hover:border-white hover:bg-white/5 active:scale-95 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white/60 transition-all duration-150 cursor-pointer"
                         >
                             <Gauge size={16} />
                         </button>
                         <button
+                            type="button"
                             title="Charts"
-                            className="p-2 border border-transparent hover:border-white/30 transition-colors"
+                            data-testid="nav-charts-btn"
+                            className="p-2 border border-transparent text-white/70 hover:text-white hover:border-white/40 hover:bg-white/5 active:scale-95 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white/60 transition-all duration-150 cursor-pointer"
                         >
                             <ChartBar size={16} />
                         </button>
                         <button
+                            type="button"
                             title="Routes"
-                            className="p-2 border border-transparent hover:border-white/30 transition-colors"
+                            data-testid="nav-routes-btn"
+                            className="p-2 border border-transparent text-white/70 hover:text-white hover:border-white/40 hover:bg-white/5 active:scale-95 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white/60 transition-all duration-150 cursor-pointer"
                         >
                             <PathIcon size={16} />
                         </button>
                         <button
+                            type="button"
                             title="Live"
-                            className="p-2 border border-transparent hover:border-white/30 transition-colors"
+                            data-testid="nav-live-btn"
+                            className="p-2 border border-transparent text-white/70 hover:text-white hover:border-white/40 hover:bg-white/5 active:scale-95 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white/60 transition-all duration-150 cursor-pointer"
                         >
                             <Broadcast size={16} />
                         </button>
                     </nav>
                 </div>
                 <button
+                    type="button"
                     onClick={() => setSettingsOpen(true)}
                     title="Settings"
                     data-testid="open-settings-btn"
-                    className="p-2 border border-white/20 hover:border-white/60 transition-colors"
+                    className="group p-2 border border-white/20 text-white hover:border-white hover:bg-white/5 active:scale-95 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white/60 transition-all duration-150 cursor-pointer"
                 >
-                    <GearSix size={16} />
+                    <GearSix
+                        size={16}
+                        className="transition-transform duration-300 group-hover:rotate-90"
+                    />
                 </button>
             </aside>
 
@@ -202,11 +214,16 @@ export default function Dashboard() {
                             </span>
                         </div>
                         <button
+                            type="button"
                             data-testid="open-settings-btn-top"
                             onClick={() => setSettingsOpen(true)}
-                            className="border border-white/20 hover:border-white/60 transition-colors px-3 py-2 font-mono text-[10px] uppercase tracking-[0.25em] flex items-center gap-2"
+                            className="group border border-white/20 hover:border-white hover:bg-white/5 active:scale-[0.97] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white/60 transition-all duration-150 px-3 py-2 font-mono text-[10px] uppercase tracking-[0.25em] flex items-center gap-2 cursor-pointer"
                         >
-                            <GearSix size={12} /> Settings
+                            <GearSix
+                                size={12}
+                                className="transition-transform duration-300 group-hover:rotate-90"
+                            />{" "}
+                            Settings
                         </button>
                     </div>
                 </header>
