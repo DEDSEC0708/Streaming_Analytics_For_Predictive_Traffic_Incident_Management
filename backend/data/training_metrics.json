@@ -1,0 +1,36 @@
+{
+  "accuracy": 0.695,
+  "feature_importance": [
+    {
+      "feature": "weather_condition",
+      "importance": 7.727689743041992,
+      "importance_pct": 54.28
+    },
+    {
+      "feature": "hour",
+      "importance": 2.0539402961730957,
+      "importance_pct": 14.43
+    },
+    {
+      "feature": "temperature",
+      "importance": 1.420312523841858,
+      "importance_pct": 9.98
+    },
+    {
+      "feature": "visibility",
+      "importance": 1.1897695064544678,
+      "importance_pct": 8.36
+    },
+    {
+      "feature": "wind_speed",
+      "importance": 0.9466748833656311,
+      "importance_pct": 6.65
+    },
+    {
+      "feature": "humidity",
+      "importance": 0.898745059967041,
+      "importance_pct": 6.31
+    }
+  ],
+  "n_samples": 12000
+}
