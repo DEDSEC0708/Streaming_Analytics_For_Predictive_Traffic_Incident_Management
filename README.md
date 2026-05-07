@@ -63,6 +63,15 @@ npm install
 npm start
 ```
 
+## Output
+<img width="1913" height="1197" alt="Screenshot 2026-05-08 003534" src="https://github.com/user-attachments/assets/22fb9c2d-2bc8-4034-81af-b7d3fd6f2655" />
+Dashboard
+
+---
+
+<img width="1917" height="1198" alt="Screenshot 2026-05-08 003558" src="https://github.com/user-attachments/assets/4f8867aa-f47a-4d1c-9ea8-fb5e9cc0ea6b" />
+Prediction
+
 ## Applications
 Smart City Traffic Management
 Intelligent Transportation Systems (ITS)
