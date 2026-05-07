@@ -76,29 +76,12 @@ python server.py
 ```
 ---
 ##Frontend Setup
-
+```bash
 cd frontend
 npm install
 npm start
-
+```
 ---
-
-Project Structure
-Streaming_Analytics_For_Predictive_Traffic_Incident_Management/
-│
-├── backend/
-│   ├── server.py
-│   ├── train_model.py
-│   ├── requirements.txt
-│
-├── frontend/
-│   ├── src/
-│   ├── public/
-│   ├── package.json
-│
-├── tests/
-├── README.md
-└── .gitignore
 
 
 ### Applications
