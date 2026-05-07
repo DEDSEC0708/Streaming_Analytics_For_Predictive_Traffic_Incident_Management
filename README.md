@@ -75,13 +75,13 @@ npm start
 ---
 
 ## Applications
-Smart City Traffic Management
-Intelligent Transportation Systems (ITS)
-Accident Prevention Platforms
-Urban Mobility Analytics
+- Smart City Traffic Management
+- Intelligent Transportation Systems (ITS)
+- Accident Prevention Platforms
+- Urban Mobility Analytics
 
 ## Future Enhancements
-Integration with live traffic cameras and APIs
-Real-time notification and alert system
-Mobile app for field teams
-Advanced deep learning models
+- Integration with live traffic cameras and APIs
+- Real-time notification and alert system
+- Mobile app for field teams
+- Advanced deep learning models
